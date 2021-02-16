@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maestros{% endblock %}
+
+{% block body %}
+    <section class="bg-white py-10">
+        <div class="container">
+            {% for categoria in categorias %}
+                {% if categoria.teachers | length > 0 %}
+                    <div>
+                        <h1>{{ categoria.titulo }}</h1>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    {% for __teacher in categoria.teachers %}
+                                        <div class="col-md-4">
+                                            <img class="teacher-image rounded-circle" src="{{ teacher_image }}/{{ __teacher.imagen }}" alt="">
+                                            <div>
+                                                <h2>{{ __teacher.firstName }} {{ __teacher.lastName }}</h2>
+                                                {{ __teacher.biography | raw }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <style>
+        .page-header {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+    </style>
+{% endblock %}
